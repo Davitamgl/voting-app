@@ -30,8 +30,9 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <a :href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             this.closest('form').submit();">
+                            <a :href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                                                                         this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </a>
                         </form>
@@ -55,15 +56,55 @@
     </header>
     <main class="container flex mx-auto max-w-custom">
         <div class="mr-5 w-70">
-            Add idea form goes here .Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis ea eveniet impedit
-            cumque, harum mollitia
-            doloremque at provident quia? Exercitationem, architecto deserunt nostrum, vel est error asperiores et, eum
-            voluptate veritatis natus perspiciatis repellendus. Accusantium suscipit voluptatibus velit reiciendis,
-            nobis veritatis dicta alias accusamus quasi vel. Amet fugit, excepturi ipsa quisquam vel dolores adipisci,
-            et voluptates aliquam similique maiores sequi facere doloribus sunt placeat cum nobis odit, a est?
-            Laudantium veniam suscipit similique nihil atque perspiciatis autem perferendis quibusdam? Aut molestiae
-            beatae, quibusdam saepe magni numquam eligendi ab. Accusamus ipsam ipsa corporis ad unde quas a in minima
-            ratione porro?
+            <div class="mt-16 bg-white border-2 border-blue rounded-xl" style="
+            border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+              border-image-slice: 1;
+              background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+              background-origin: border-box;
+              background-clip: content-box, border-box;
+      ">
+                <div class="px-6 py-2 pt-6 text-center">
+                    <h3 class="text-base font-semibold">Add an idea</h3>
+                    <p class="mt-4 text-xs">Let us know what you would like and we'll take a look over!</p>
+                </div>
+                <form action="#" method="POST" class="px-4 py-6 space-y-4">
+                    <div>
+                        <input type="text"
+                            class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                            placeholder="Your Idea">
+                    </div>
+                    <div>
+                        <select name="category_add" id="category_add"
+                            class="w-full px-4 py-2 text-sm bg-gray-100 border-none rounded-xl">
+                            <option value="Category One">Category One</option>
+                            <option value="Category Two">Category Two</option>
+                            <option value="Category Three">Category Three</option>
+                            <option value="Category Four">Category Four</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea name="idea" id="idea" cols="30" rows="4"
+                            class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                            placeholder="Describe your idea"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between space-x-3">
+                        <button type="button"
+                            class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-400">
+                            {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
+                            <svg class="w-4 text-gray-600 transform -rotate-45" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                            </svg>
+                            <span class="ml-1">Attach</span>
+                        </button>
+                        <button type="submit"
+                            class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                            <span class="ml-1">Submit</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="w-175 ">
             <nav class="flex items-center justify-between text-xs">
@@ -97,6 +138,7 @@
             </div>
 
         </div>
+
     </main>
 </body>
 

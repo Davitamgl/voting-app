@@ -42,6 +42,7 @@
                         <div
                             class="px-4 py-2 font-bold leading-none text-center uppercase bg-gray-200 rounded-full text-xxs w-28 h-7">
                             Open</div>
+                        {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
                         <button
                             class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                             {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
@@ -68,18 +69,123 @@
     <!------------ End idea-container ------------>
     <div class="flex items-center justify-between mt-6 buttons-container">
         <div class="flex items-center ml-6 space-x-4">
-            <button type="button"
-                class="flex items-center justify-center w-32 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
-                <span class="ml-1">Reply</span>
-            </button>
-            <button type="button"
-                class="flex items-center justify-center px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 w-36 h-11 rounded-xl hover:border-gray-400">
-                <span>Set Status</span>
-                {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
-                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
+            <div class="relative">
+                {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+                <button type="button"
+                    class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                    <span class="ml-1">Reply</span>
+                </button>
+                <div class="absolute z-10 mt-2 text-sm font-semibold text-left bg-white w-104 shadow-dialog rounded-xl">
+                    <form action="#" class="px-4 py-6 space-y-4">
+                        <div>
+                            <textarea name="post_comment" id="post_comment" cols="30" rows="4"
+                                class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                                placeholder="Go ahead, don't be shy. Share your thoughts..."></textarea>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+                            <button type="button"
+                                class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                                Post Comment
+                            </button>
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+                            <button type="button"
+                                class="flex items-center justify-center w-32 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-400">
+                                {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
+                                <svg class="w-4 text-gray-600 transform -rotate-45" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                </svg>
+                                <span class="ml-1">Attach</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+            <div class="relative">
+                <button type="button"
+                    class="flex items-center justify-center px-6 py-3 text-sm font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 w-36 h-11 rounded-xl hover:border-gray-400">
+                    <span>Set Status</span>
+                    {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
+                    <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="absolute z-20 mt-2 text-sm font-semibold text-left bg-white w-76 shadow-dialog rounded-xl">
+                    <form action="#" class="px-4 py-6 space-y-4">
+                        <div class="space-y-2">
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="text-gray-600 bg-gray-200 border-none" name="status"
+                                        value="1" checked>
+                                    <span class="ml-2">Open</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="bg-gray-200 border-none text-purple" name="status"
+                                        value="2">
+                                    <span class="ml-2">Considering</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="bg-gray-200 border-none text-yellow" name="status"
+                                        value="3">
+                                    <span class="ml-2">In Progress</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="bg-gray-200 border-none text-green" name="status"
+                                        value="3">
+                                    <span class="ml-2">Implemented</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="bg-gray-200 border-none text-red" name="status"
+                                        value="3">
+                                    <span class="ml-2">Closed</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <textarea name="update_comment" id="update_comments" cols="30" rows="3"
+                                class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                                placeholder="Add an update comment (optional)"></textarea>
+                        </div>
+
+                        <div class="flex items-center justify-between space-x-3">
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+                            <button type="button"
+                                class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-400">
+                                <svg class="w-4 text-gray-600 transform -rotate-45" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                </svg>
+                                <span class="ml-1">Attach</span>
+                            </button>
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
+                            <button type="submit"
+                                class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                                <span class="ml-1">Update</span>
+                            </button>
+                        </div>
+
+                        <div>
+                            <label class="inline-flex items-center font-normal">
+                                <input type="checkbox" name="notify_voters" class="bg-gray-200 rounded" checked="">
+                                <span class="ml-2">Notify all voters</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="flex items-center space-x-3">
@@ -87,6 +193,7 @@
                 <div class="text-xl leading-snug">12</div>
                 <div class="text-xs leading-none text-gray-400">Votes</div>
             </div>
+            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
             <button type="button"
                 class="w-32 px-6 py-3 text-xs font-semibold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-400">
                 <span>Vote</span>
@@ -117,6 +224,7 @@
                             <div>10 hours ago</div>
                         </div>
                         <div class="flex items-center space-x-2">
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
                             <button
                                 class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7">
                                 <svg fill="currentColor" width="24" height="6">
@@ -151,7 +259,7 @@
                 </div>
                 <div class="w-full mx-4">
                     <h4 class="text-xl font-semibold">
-                        <a href="#" class="hover:underline">Status Changed to "Under Construction"</a>
+                        <a href="#" class="hover:underline">Status Changed to "Under Consideration"</a>
 
                     </h4>
                     <div class="mt-3 text-gray-600 line-clamp-3">
@@ -165,6 +273,7 @@
                             <div>10 hours ago</div>
                         </div>
                         <div class="flex items-center space-x-2">
+                            {{-- TODO: MOVE button TO ITS BLADE COMPONENT --}}
                             <button
                                 class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7">
                                 <svg fill="currentColor" width="24" height="6">

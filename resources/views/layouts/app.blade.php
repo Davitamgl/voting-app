@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @livewireStyles
 </head>
 
 <body class="font-sans text-sm text-gray-900 bg-gray-background">
@@ -32,7 +33,7 @@
 
                             <a :href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                                                                                 this.closest('form').submit();">
+                                                                                                                                     this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </a>
                         </form>
@@ -140,6 +141,7 @@
         </div>
 
     </main>
+    @livewireScripts
 </body>
 
 </html>

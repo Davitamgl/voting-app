@@ -18,3 +18,4 @@ class DatabaseSeeder extends Seeder
         Idea::factory(30)->create();
     }
 }
+ 

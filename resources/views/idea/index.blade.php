@@ -51,7 +51,7 @@
                 <div class="flex flex-col flex-1 px-2 py-6 md:flex-row">
                     <div class="flex-none mx-2 md:mx-0 ">
                         <a href="{{ route('idea.show', [$idea]) }}">
-                            <img src="https://i.pravatar.cc/60?u=98" alt="user avatar" width="60" height="60"
+                            <img src="{{ $idea->user->getAvatar() }}" alt="user avatar" width="60" height="60"
                                 alt="avatar" class="w-14 h-14 rounded-xl">
                         </a>
                     </div>

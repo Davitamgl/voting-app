@@ -74,8 +74,8 @@
                             </div>
                             <div x-data="{ isOpen: false }" class="flex items-center mt-4 space-x-2 md:mt-0">
                                 <div
-                                    class="right-0 z-10 px-4 py-2 font-bold leading-none text-center uppercase bg-gray-200 rounded-full text-xxs w-28 h-7 md:ml-8 top-8 md:top-6 md:left-0">
-                                    Open</div>
+                                    class="{{ $idea->status->classes }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
+                                    {{ $idea->status->name }}</div>
                                 <button @click="isOpen = !isOpen"
                                     class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                                     {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}

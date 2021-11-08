@@ -68,7 +68,7 @@
                     <h3 class="text-base font-semibold">Add an idea</h3>
                     <p class="mt-4 text-xs">
                         @auth
-                            Let us know what you would like and we'll take a look over!</p>
+                            Let us know what you would like and we will take a look over!</p>
                     @else
                         Please log in to create an idea.
                     @endauth

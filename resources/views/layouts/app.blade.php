@@ -21,7 +21,7 @@
 
 <body class="font-sans text-sm text-gray-900 bg-gray-background">
     <header class="flex flex-col items-center justify-between px-8 py-4 md:flex-row">
-        <a href="#">
+        <a href="{{ route('idea.index') }}">
             <img alt="logo" src="{{ asset('img/logo.svg') }}" />
         </a>
         <div class="flex items-center mt-2 md:mt-0">
@@ -33,7 +33,7 @@
 
                             <a :href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                                                                                                                                     this.closest('form').submit();">
+                                                                                                                                                                                         this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </a>
                         </form>

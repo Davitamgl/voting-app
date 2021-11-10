@@ -33,7 +33,7 @@
 
                             <a :href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                                                                                                                         this.closest('form').submit();">
+                                                                                                                                                                                     this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </a>
                         </form>
@@ -93,38 +93,11 @@
             </div>
         </div>
         <div class="w-full px-2 md:w-175 md:px-0">
-            <nav class="items-center justify-between hidden text-xs md:flex">
-                <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
-                    <li>
-                        <a href="#" class="pb-3 border-b-4 border-blue">All Ideas (55)</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="pb-3 text-gray-400 transition duration-150 ease-in border-b-4 hover:border-blue">Considering
-                            (5)</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="pb-3 text-gray-400 transition duration-150 ease-in border-b-4 hover:border-blue">In
-                            Progress (3)</a>
-                    </li>
-                </ul>
-                <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
-                    <li><a href="#"
-                            class="pb-3 text-gray-400 transition duration-150 ease-in border-b-4 hover:border-blue">Implemented
-                            (88)</a></li>
-                    <li><a href="#"
-                            class="pb-3 text-gray-400 transition duration-150 ease-in border-b-4 hover:border-blue">Closed
-                            (66)</a></li>
-                </ul>
-            </nav>
-
+            <livewire:status-filters />
             <div class="mt-8">
                 {{ $slot }}
             </div>
-
         </div>
-
     </main>
     @livewireScripts
 </body>

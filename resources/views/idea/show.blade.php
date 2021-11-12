@@ -1,17 +1,16 @@
 <x-app-layout>
     <div>
-        {{-- TODO: USE NAMED ROUTE --}}
-        <a href="/" class="flex items-center font-semibold hover:underline">
+        <a href="{{ $backUrl }}" class="flex items-center font-semibold hover:underline">
             {{-- TODO: EXPORT SVG --}}
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-            <span class="ml-2">All ideas</span>
+            <span class="ml-2">All ideas (or back to chosen category with filters)</span>
         </a>
     </div>
-    
+
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount" />
-    
+
 
     <!------------ End buttons-container ------------>
     <div class="relative pt-4 my-8 mt-1 space-y-6 comments-container md:ml-22">

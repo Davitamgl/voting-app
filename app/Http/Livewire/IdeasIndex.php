@@ -19,10 +19,13 @@ class IdeasIndex extends Component
 
 	public $filter;
 
+	public $search;
+
 	protected $queryString = [
 		'status',
 		'category',
 		'filter',
+		'search',
 	];
 
 	protected $listeners = ['queryStringUpdatedStatus'];
@@ -48,6 +51,11 @@ class IdeasIndex extends Component
 		$this->resetPage();
 	}
 
+	public function updatingSearch()
+	{
+		$this->resetPage();
+	}
+
 	public function updatedFilter()
 	{
 		if ($this->filter === 'My Ideas')
@@ -63,7 +71,6 @@ class IdeasIndex extends Component
 	{
 		$statuses = Status::all()->pluck('id', 'name');
 		$categories = Category::all();
-
 		return view('livewire.ideas-index', [
 			'ideas' => Idea::with('user', 'category', 'status')
 				->when($this->status && $this->status !== 'All', function ($query) use ($statuses) {
@@ -74,6 +81,8 @@ class IdeasIndex extends Component
 					return $query->orderByDesc('votes_count');
 				})->when($this->filter && $this->filter === 'My Ideas', function ($query) {
 					return $query->where('user_id', auth()->id());
+				})->when(strlen($this->search) >= 3, function ($query) {
+					return $query->where('title', 'like', '%' . $this->search . '%');
 				})
 				->addSelect(['voted_by_user' => Vote::select('id')
 					->where('user_id', auth()->id())

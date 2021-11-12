@@ -18,7 +18,7 @@
             </select>
         </div>
         <div class="relative w-full md:w-2/3">
-            <input type="search" placeholder="Find an idea"
+            <input wire:model="search" type="search" placeholder="Find an idea"
                 class="w-full px-4 py-2 pl-8 placeholder-gray-900 bg-white border-none rounded-xl">
             <div class="absolute top-0 flex h-full ml-2 itmes-center">
                 {{-- TODO: MOVE SVG TO ITS BLADE COMPONENT --}}
@@ -32,9 +32,15 @@
     <!------------ End filters ------------>
 
     <div class="my-6 ideas-container space-y-7">
-        @foreach ($ideas as $idea)
-            <livewire:idea-index :key="$idea->id" :idea='$idea' :votesCount="$idea->votes_count" />
-        @endforeach
+        @forelse ($ideas as $idea)
+            <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
+        @empty
+            <div class="mx-auto mt-12 w-70">
+                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto"
+                    style="mix-blend-mode: luminosity">
+                <div class="mt-6 font-bold text-center text-gray-400">No ideas were found...</div>
+            </div>
+        @endforelse
         <!------------ End idea-container ------------>
     </div>
     <!------------ End ideas-container ------------>

@@ -15,53 +15,53 @@ use Tests\TestCase;
 
 class NotifyAllVotersTest extends TestCase
 {
-    use RefreshDatabase;
+	use RefreshDatabase;
 
-    /** @test */
-    public function it_sends_an_email_to_all_voters()
-    {
-        $user = User::factory()->create([
-            'email' => 'd@redberry.ge',
-        ]);
+	/** @test */
+	public function it_sends_an_email_to_all_voters()
+	{
+		$user = User::factory()->create([
+			'email' => 'd@redberry.ge',
+		]);
 
-        $userB = User::factory()->create([
-            'email' => 'user@user.com',
-        ]);
+		$userB = User::factory()->create([
+			'email' => 'user@user.com',
+		]);
 
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+		$categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusConsidering = Status::factory()->create(['id' => 2, 'name' => 'Considering']);
+		$statusConsidering = Status::factory()->create(['id' => 2, 'name' => 'Considering']);
 
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusConsidering->id,
-            'title' => 'My First Idea',
-            'description' => 'Description for my first idea',
-        ]);
+		$idea = Idea::factory()->create([
+			'user_id'     => $user->id,
+			'category_id' => $categoryOne->id,
+			'status_id'   => $statusConsidering->id,
+			'title'       => 'My First Idea',
+			'description' => 'Description for my first idea',
+		]);
 
-        Vote::create([
-            'idea_id' => $idea->id,
-            'user_id' => $user->id,
-        ]);
+		Vote::create([
+			'idea_id' => $idea->id,
+			'user_id' => $user->id,
+		]);
 
-        Vote::create([
-            'idea_id' => $idea->id,
-            'user_id' => $userB->id,
-        ]);
+		Vote::create([
+			'idea_id' => $idea->id,
+			'user_id' => $userB->id,
+		]);
 
-        Mail::fake();
+		Mail::fake();
 
-        NotifyAllVoters::dispatch($idea);
+		NotifyAllVoters::dispatch($idea);
 
-        Mail::assertQueued(IdeaStatusUpdatedMailable::class, function ($mail) {
-            return $mail->hasTo('d@redberry.ge')
-                && $mail->build()->subject === 'An idea you voted for has a new status';
-        });
+		Mail::assertQueued(IdeaStatusUpdatedMailable::class, function ($mail) {
+			return $mail->hasTo('d@redberry.ge')
+				&& $mail->build()->subject === 'An idea you voted for has a new status';
+		});
 
-        Mail::assertQueued(IdeaStatusUpdatedMailable::class, function ($mail) {
-            return $mail->hasTo('user@user.com')
-                && $mail->build()->subject === 'An idea you voted for has a new status';
-        });
-    }
+		Mail::assertQueued(IdeaStatusUpdatedMailable::class, function ($mail) {
+			return $mail->hasTo('user@user.com')
+				&& $mail->build()->subject === 'An idea you voted for has a new status';
+		});
+	}
 }

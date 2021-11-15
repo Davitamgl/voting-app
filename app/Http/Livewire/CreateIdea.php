@@ -18,7 +18,7 @@ class CreateIdea extends Component
 	// TODO: MOVE RULES TO ITS OWN REQUEST
 	protected $rules = [
 		'title'       => ['required', 'min:4'],
-		'category'    => ['required', 'integer'],
+		'category'    => ['required', 'integer', 'exists:categories,id'],
 		'description' => ['required', 'min:4'],
 	];
 

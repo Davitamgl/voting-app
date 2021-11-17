@@ -53,16 +53,16 @@
                                                                 isOpen = false
                                                                 $dispatch('custom-show-edit-modal')
                                                                 "
-                                                class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Edit
-                                                Idea</a></li>
+                                                class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Edit Idea</a></li>
+                                               
                                     @endcan
                                     @can('delete', $idea)
                                         <li><a href="#" @click="
                                                                 isOpen = false
                                                                 $dispatch('custom-show-delete-modal')
                                                                 "
-                                                class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
-                                                Idea</a></li>
+                                                class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete Idea</a></li>
+                                                
 
                                     @endcan
 
@@ -70,8 +70,8 @@
                                                 isOpen = false
                                                 $dispatch('custom-show-mark-idea-as-spam-modal')
                                                 "
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
-                                            as Spam</a></li>
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Spam</a></li>
+                                            
                                     @admin
                                     @if ($idea->spam_reports > 0)
                                         <li>

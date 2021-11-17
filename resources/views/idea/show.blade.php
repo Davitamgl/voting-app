@@ -8,23 +8,9 @@
             <span class="ml-2">All ideas (or back to chosen category with filters)</span>
         </a>
     </div>
-
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount" />
-    @can('update', $idea)
-        <livewire:edit-idea :idea="$idea" />
-    @endcan
+    <x-modals-container :idea="$idea" />
 
-    @can('delete', $idea)
-        <livewire:delete-idea :idea="$idea" />
-    @endcan
-
-    @auth
-        <livewire:mark-idea-as-spam :idea="$idea" />
-    @endauth
-
-    @admin
-    <livewire:mark-idea-as-not-spam :idea="$idea" />
-    @endadmin
     <div class="relative pt-4 my-8 mt-1 space-y-6 comments-container md:ml-22">
 
         @foreach (range(1, 3) as $comment)

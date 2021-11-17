@@ -10,7 +10,7 @@
     </div>
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount" />
     <x-modals-container :idea="$idea" />
-
+    <x-notification-success />
     <div class="relative pt-4 my-8 mt-1 space-y-6 comments-container md:ml-22">
 
         @foreach (range(1, 3) as $comment)

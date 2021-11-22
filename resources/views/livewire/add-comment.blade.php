@@ -2,9 +2,25 @@
         Livewire.on('commentWasAdded', () => {
             isOpen = false
         })
+        Livewire.hook('message.processed', (message, component) => {
+            if (message.updateQueue[0].payload.event === 'commentWasAdded'
+             && message.component.fingerprint.name === 'idea-comments') {
+                const lastComment = document.querySelector('.comment-container:last-child')
+                lastComment.scrollIntoView({ behavior: 'smooth'})
+                lastComment.classList.add('bg-green-50')
+                setTimeout(() => {
+                    lastComment.classList.remove('bg-green-50')
+                }, 5000)
+            }
+        })
     " class="relative">
-    <button type="button" @click="isOpen = !isOpen"
-        class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+    <button type="button"@click="
+    isOpen = !isOpen
+    if (isOpen) {
+        $nextTick(() => $refs.comment.focus())
+    }
+"  
+class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
         Reply
     </button>
     <div class="absolute z-10 w-64 mt-2 text-sm font-semibold text-left bg-white md:w-104 shadow-dialog rounded-xl"
@@ -13,7 +29,7 @@
         @auth
             <form wire:submit.prevent="addComment" action="#" class="px-4 py-6 space-y-4">
                 <div>
-                    <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4"
+                    <textarea x-ref="comment" wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4"
                         class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
                         placeholder="Go ahead, don't be shy. Share your thoughts..." required></textarea>
 

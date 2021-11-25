@@ -32,9 +32,10 @@ class AddComment extends Component
 		$this->validate();
 
 		Comment::create([
-			'user_id' => auth()->id(),
-			'idea_id' => $this->idea->id,
-			'body'    => $this->comment,
+			'user_id'   => auth()->id(),
+			'idea_id'   => $this->idea->id,
+			'status_id' => 1,
+			'body'      => $this->comment,
 		]);
 
 		$this->reset('comment');

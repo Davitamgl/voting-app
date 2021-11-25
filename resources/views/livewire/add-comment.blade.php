@@ -10,7 +10,7 @@
                             firstComment.scrollIntoView({ behavior: 'smooth'})
                         }
             
-            if (message.updateQueue[0].payload.event === 'commentWasAdded'
+            if (['commentWasAdded', 'statusWasUpdated'].includes(message.updateQueue[0].payload.event)
              && message.component.fingerprint.name === 'idea-comments') {
                 const lastComment = document.querySelector('.comment-container:last-child')
                 lastComment.scrollIntoView({ behavior: 'smooth'})
@@ -21,13 +21,12 @@
             }
         })
     " class="relative">
-    <button type="button"@click="
+    <button type="button" @click="
     isOpen = !isOpen
     if (isOpen) {
         $nextTick(() => $refs.comment.focus())
     }
-"  
-class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+" class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
         Reply
     </button>
     <div class="absolute z-10 w-64 mt-2 text-sm font-semibold text-left bg-white md:w-104 shadow-dialog rounded-xl"

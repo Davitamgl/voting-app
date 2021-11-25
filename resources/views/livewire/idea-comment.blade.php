@@ -7,6 +7,11 @@
         </div>
         <div class="w-full md:mx-4">
             <div class="text-gray-600 ">
+                @admin
+                @if ($comment->spam_reports > 0)
+                    <div class="mb-2 text-red">Spam Reports: {{ $comment->spam_reports }}</div>
+                @endif
+                @endadmin
                 {{ $comment->body }}
             </div>
 
@@ -36,30 +41,54 @@
                                 x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false">
                                 @can('update', $comment)
-                                <li>
-                                    <a href="#" @click.prevent="
-                                                        isOpen = false
-                                                        Livewire.emit('setEditComment',{{ $comment->id }})
-                                                    "
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
-                                        Edit Comment
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="#" @click.prevent="
+                                                                isOpen = false
+                                                                Livewire.emit('setEditComment',{{ $comment->id }})
+                                                            "
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                            Edit Comment
+                                        </a>
+                                    </li>
                                 @endcan
                                 @can('delete', $comment)
+                                    <li>
+                                        <a href="#" @click.prevent="
+                                                                isOpen = false
+                                                                Livewire.emit('setDeleteComment',{{ $comment->id }})
+                                                            "
+                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                            Delete Comment
+                                        </a>
+                                    </li>
+                                @endcan
+
                                 <li>
                                     <a href="#" @click.prevent="
-                                                        isOpen = false
-                                                        Livewire.emit('setDeleteComment',{{ $comment->id }})
-                                                    "
+                                                            isOpen = false
+                                                            Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
+                                                        "
                                         class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
-                                        Delete Comment
+                                        Mark as Spam
                                     </a>
                                 </li>
-                                @endcan
-                                <li><a href="#"
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as
-                                        Spam</a></li>
+                                
+                                @admin
+                                @if ($comment->spam_reports > 0)
+                                <li>
+                                    <a
+                                        href="#"
+                                        @click.prevent="
+                                            isOpen = false
+                                            Livewire.emit('setMarkAsNotSpamComment', {{ $comment->id }})
+                                        "
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
+                                    >
+                                        Not Spam
+                                    </a>
+                                </li>
+                                @endif
+                            @endadmin
 
                             </ul>
                         </div>

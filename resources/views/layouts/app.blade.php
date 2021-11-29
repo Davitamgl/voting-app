@@ -33,7 +33,7 @@
                                 @csrf
 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                                        this.closest('form').submit();">
                                     {{ __('Log out') }}
                                 </a>
                             </form>
@@ -107,7 +107,10 @@
     @if (session('success_message'))
         <x-notification-success :redirect="true" message-to-display="{{ session('success_message') }}" />
     @endif
-
+    @if (session('error_message'))
+        <x-notification-success type="error" :redirect="true"
+            message-to-display="{{ session('error_message') }}" />
+    @endif
     @livewireScripts
 </body>
 

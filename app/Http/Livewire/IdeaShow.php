@@ -10,85 +10,103 @@ use Livewire\Component;
 
 class IdeaShow extends Component
 {
-    use WithAuthRedirects;
+	use WithAuthRedirects;
 
-    public $idea;
-    public $votesCount;
-    public $hasVoted;
+	public $idea;
 
-    protected $listeners = [
-        'statusWasUpdated',
-        'ideaWasUpdated',
-        'ideaWasMarkedAsSpam',
-        'ideaWasMarkedAsNotSpam',
-        'commentWasAdded',
-        'commentWasDeleted',
-    ];
+	public $votesCount;
 
-    public function mount(Idea $idea, $votesCount)
-    {
-        $this->idea = $idea;
-        $this->votesCount = $votesCount;
-        $this->hasVoted = $idea->isVotedByUser(auth()->user());
-    }
+	public $hasVoted;
 
-    public function statusWasUpdated()
-    {
-        $this->idea->refresh();
-    }
+	protected $listeners = [
+		'statusWasUpdated',
+		'statusWasUpdatedError',
+		'ideaWasUpdated',
+		'ideaWasMarkedAsSpam',
+		'ideaWasMarkedAsNotSpam',
+		'commentWasAdded',
+		'commentWasDeleted',
+	];
 
-    public function ideaWasUpdated()
-    {
-        $this->idea->refresh();
-    }
+	public function mount(Idea $idea, $votesCount)
+	{
+		$this->idea = $idea;
+		$this->votesCount = $votesCount;
+		$this->hasVoted = $idea->isVotedByUser(auth()->user());
+	}
 
-    public function ideaWasMarkedAsSpam()
-    {
-        $this->idea->refresh();
-    }
+	public function statusWasUpdatedError()
+	{
+		$this->idea->refresh();
+	}
 
-    public function ideaWasMarkedAsNotSpam()
-    {
-        $this->idea->refresh();
-    }
+	public function statusWasUpdated()
+	{
+		$this->idea->refresh();
+	}
 
-    public function commentWasAdded()
-    {
-        $this->idea->refresh();
-    }
+	public function ideaWasUpdated()
+	{
+		$this->idea->refresh();
+	}
 
-    public function commentWasDeleted()
-    {
-        $this->idea->refresh();
-    }
+	public function ideaWasMarkedAsSpam()
+	{
+		$this->idea->refresh();
+	}
 
-    public function vote()
-    {
-        if (auth()->guest()) {
-            return $this->redirectToLogin();
-        }
+	public function ideaWasMarkedAsNotSpam()
+	{
+		$this->idea->refresh();
+	}
 
-        if ($this->hasVoted) {
-            try {
-                $this->idea->removeVote(auth()->user());
-            } catch (VoteNotFoundException $e) {
-                // do nothing
-            }
-            $this->votesCount--;
-            $this->hasVoted = false;
-        } else {
-            try {
-                $this->idea->vote(auth()->user());
-            } catch (DuplicateVoteException $e) {
-                // do nothing
-            }
-            $this->votesCount++;
-            $this->hasVoted = true;
-        }
-    }
+	public function commentWasAdded()
+	{
+		$this->idea->refresh();
+	}
 
-    public function render()
-    {
-        return view('livewire.idea-show');
-    }
+	public function commentWasDeleted()
+	{
+		$this->idea->refresh();
+	}
+
+	public function vote()
+	{
+		if (auth()->guest())
+		{
+			return $this->redirectToLogin();
+		}
+
+		if ($this->hasVoted)
+		{
+			try
+			{
+				$this->idea->removeVote(auth()->user());
+			}
+			catch (VoteNotFoundException $e)
+			{
+				// do nothing
+			}
+			$this->votesCount--;
+			$this->hasVoted = false;
+		}
+		else
+		{
+			try
+			{
+				$this->idea->vote(auth()->user());
+			}
+			catch (DuplicateVoteException $e)
+			{
+				// do nothing
+			}
+			$this->votesCount++;
+			$this->hasVoted = true;
+		}
+	}
+
+	public function render()
+	{
+		return view('livewire.idea-show');
+	}
 }

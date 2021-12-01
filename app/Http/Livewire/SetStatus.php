@@ -30,7 +30,12 @@ class SetStatus extends Component
 		{
 			abort(Response::HTTP_FORBIDDEN);
 		}
+		if ($this->idea->status_id === (int) $this->status)
+		{
+			$this->emit('statusWasUpdatedError', 'Status is the same!');
 
+			return;
+		}
 		$this->idea->status_id = $this->status;
 		$this->idea->save();
 
@@ -48,7 +53,7 @@ class SetStatus extends Component
 		]);
 
 		$this->reset('comment');
-		
+
 		$this->emit('statusWasUpdated', 'Status was updated successfully!');
 	}
 
